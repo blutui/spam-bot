@@ -37,7 +37,7 @@ export default async function handler(request: VercelRequest, response: VercelRe
     const formContent = JSON.stringify(content);
 
     const completion = await openai.chat.completions.create({
-      model: "gpt-4",
+      model: "gpt-4o",
       messages: [
         { role: "system", content: "You are a spam detection assistant. Respond with a number between 0 and 100 indicating the likelihood that the given content is spam. 0 means definitely not spam, 100 means definitely spam." },
         { role: "user", content: `What's the spam likelihood of this content? ${formContent}` }
