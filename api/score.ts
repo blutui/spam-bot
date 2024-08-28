@@ -26,12 +26,16 @@ export default async function handler(request: VercelRequest, response: VercelRe
 
     // Validate the request body
     const validationResult = RequestSchema.safeParse(request.body);
-    if (!validationResult.success) {
+     if (!validationResult.success || !validationResult.data.content) {
       response.statusCode = 422;
       response.setHeader('Content-Type', 'application/json');
-      response.end(JSON.stringify({ error: 'Invalid request body', details: validationResult.error.format() }));
+      response.end(JSON.stringify({ error: 'The content field is required or the request body is invalid', details: validationResult.error.format() }));
       return;
     }
+
+
+
+   
 
     const { content } = validationResult.data;
     const formContent = JSON.stringify(content);
