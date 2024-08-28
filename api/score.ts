@@ -33,10 +33,6 @@ export default async function handler(request: VercelRequest, response: VercelRe
       return;
     }
 
-
-
-   
-
     const { content } = validationResult.data;
     const formContent = JSON.stringify(content);
 
