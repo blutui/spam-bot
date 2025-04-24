@@ -7,7 +7,7 @@
     "license": "MIT",
     "private": true,
     "dependencies": {
-        "openai": "^4.94.0",
+        "openai": "^4.96.0",
         "zod": "^3.24.3"
     },
     "devDependencies": {
