@@ -8,7 +8,7 @@
     "private": true,
     "dependencies": {
         "openai": "^4.103.0",
-        "zod": "^3.25.56"
+        "zod": "^3.25.67"
     },
     "devDependencies": {
         "@types/node": "^22.15.30",
