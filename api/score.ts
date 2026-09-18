@@ -9,7 +9,7 @@ const secretKey = process.env.SECRET_KEY || '';
 
 // Define the schema for the request body
 const RequestSchema = z.object({
-  content: z.record(z.unknown()),
+  content: z.record(z.string(), z.unknown()),
 });
 
 // The overall judgment. Its probability of "yes" is the base spam score.
@@ -75,10 +75,10 @@ export default async function handler(request: VercelRequest, response: VercelRe
 
     // Validate the request body
     const validationResult = RequestSchema.safeParse(request.body);
-     if (!validationResult.success || !validationResult.data.content) {
+    if (!validationResult.success) {
       response.statusCode = 422;
       response.setHeader('Content-Type', 'application/json');
-      response.end(JSON.stringify({ error: 'The content field is required or the request body is invalid', details: validationResult.error.format() }));
+      response.end(JSON.stringify({ error: 'The content field is required or the request body is invalid', details: z.treeifyError(validationResult.error) }));
       return;
     }
 
